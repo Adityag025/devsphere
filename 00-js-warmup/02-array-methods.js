@@ -79,6 +79,8 @@ const posts = [
 
 // YOUR CODE HERE:
 
+const titles = posts.map(post => post.title);
+console.log("Titles:", titles);
 
 
 
@@ -92,6 +94,9 @@ const posts = [
 // Then console.log it.
 
 // YOUR CODE HERE:
+
+const publishedPosts = posts.filter(post => post.published);
+console.log("Published posts:", publishedPosts);
 
 
 
@@ -111,7 +116,10 @@ const posts = [
 
 // YOUR CODE HERE:
 
-
+const popularTitles = posts
+  .filter(post => post.likes > 50)
+  .map(post => post.title);
+  console.log("Popular titles:", popularTitles);
 
 
 // ----------------------------------------------------------
@@ -127,7 +135,8 @@ const posts = [
 
 // YOUR CODE HERE:
 
-
+  const totalLikes = posts.reduce((acc, post) => acc + post.likes, 0);
+  console.log("Total likes:", totalLikes);
 
 
 // ----------------------------------------------------------
@@ -144,6 +153,10 @@ const posts = [
 
 // YOUR CODE HERE:
 
+const publishedPostsnew = posts.filter(post => post.published);
+const totalLikesNew = publishedPostsnew.reduce((acc, post) => acc + post.likes, 0);
+const avgLikes = +(totalLikesNew / publishedPostsnew.length).toFixed(2);    
+console.log("Average likes (published posts):", avgLikes);
 
 
 
@@ -166,6 +179,12 @@ const posts = [
 
 // YOUR CODE HERE:
 
+const postsByAuthor = posts.reduce((acc, post) => {
+  acc[post.author] = (acc[post.author] || 0) + 1;
+  return acc;
+}, {});
+
+console.log("Posts by author:", postsByAuthor);
 
 
 
@@ -190,8 +209,14 @@ const posts = [
 
 // YOUR CODE HERE:
 
+const tagFrequency = posts.reduce((acc, post) => {
+  post.tags.forEach(tag => {
+    acc[tag] = (acc[tag] || 0) + 1;
+  });
+  return acc;
+}, {});
 
-
+console.log("Tag frequency:", tagFrequency);
 
 /*
 =============================================================
